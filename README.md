@@ -28,6 +28,25 @@ The application architecture consists of:
 7. Register EC2 instances with the load balancer
 8. Configure health checks to monitor instance availability
 
+ ## 🧠 Architecture Decisions & Trade-Offs
+
+### Compute Choice
+I used EC2 instead of ECS.
+
+- Pros:
+  - Full control of the server
+  - Easier for learning Linux
+
+- Cons:
+  - Always running → higher cost
+  - Manual scaling
+
+- Alternative:
+  - ECS for container-based scaling
+
+- Decision:
+  EC2 was chosen for simplicity and learning purposes.  
+
 ## Key Commands Used
 sudo systemctl start nginx
 sudo systemctl status nginx
@@ -47,3 +66,9 @@ During deployment several issues were investigated including:
 - How load balancers distribute traffic across instances
 - How to troubleshoot Linux servers and web services
 - How AWS networking and security groups affect connectivity
+
+## 💸 Cost Optimization Considerations
+
+- EC2 runs continuously, increasing cost
+- Could switch to Lambda for low-traffic workloads
+- Could implement auto-scaling to reduce idle usage
